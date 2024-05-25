@@ -83,3 +83,17 @@ module.exports.fetchRequestsForEvent = async (req, res, next) => {
         res.status(500).json({ success: false, message: "Server error" });
     }
 };
+
+// Get a event details
+module.exports.eventDetails = async (req, res, next) => {
+    try {
+        const { eventId } = req.params
+        const event = await Events.findById(eventId)
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' })
+        }
+        res.json(event)
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error' })
+    }
+}
