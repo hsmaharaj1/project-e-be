@@ -14,6 +14,10 @@ util/TestingToken.js
 .env
 *.local
 
+projecte-adminsdk.json
+firebase.config.js
+firebaseAdmin.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

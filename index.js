@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 const authRoute = require('./Routes/AuthRoute');
 const eventRoute = require('./Routes/EventsRoute')
+const usersRoute = require('./Routes/UsersRoute')
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const { MONGO_URL, PORT } = process.env;
@@ -33,3 +34,4 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/", authRoute);
 app.use("/events", eventRoute);
+app.use("/user", usersRoute)
