@@ -8,30 +8,34 @@ const userDataSchema = new mongoose.Schema({
     },
     first_name: {
         type: String,
-        required: true
+        required: false
     },
     last_name: {
         type: String,
     },
     interests: {
         type: [String],
-        required: true
+        required: false
     },
     dob: {
         type: Date,
-        required: true
+        required: false
     },
     gender: {
         type: String,
-        required: true
+        required: false
     },
     bio: {
         type: String,
     },
     location: {
-        address: { type: String, required: true },
-        latitude: { type: Number, required: true },
-        longitude: { type: Number, required: true }
+        address: { type: String, required: false },
+        latitude: { type: Number, required: false },
+        longitude: { type: Number, required: false }
+    },
+    isUpdated: {
+        type: Boolean,
+        default: false
     }
 })
 

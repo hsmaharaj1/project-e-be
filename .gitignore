@@ -16,7 +16,6 @@ util/TestingToken.js
 
 projecte-adminsdk.json
 firebase.config.js
-firebaseAdmin.js
 
 # Editor directories and files
 .vscode/*

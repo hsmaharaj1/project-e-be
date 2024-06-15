@@ -24,7 +24,7 @@ module.exports.googleSignIn = async (req, res) => {
                 withCredentials: true,
                 httpOnly: false
             })
-        res.status(200).json({ success: true, message: "Logged In", result: user, token: jwtToken });
+        res.status(200).json({ success: true, message: "Logged In", result: user, token: ntoken });
     } catch (error) {
         res.status(500).json({ success: false, message: 'Something went wrong' });
     }
