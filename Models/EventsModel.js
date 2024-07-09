@@ -1,3 +1,4 @@
+const { HarmCategory } = require("firebase/vertexai-preview")
 const mongoose = require("mongoose")
 
 const eventSchema = new mongoose.Schema({
@@ -14,11 +15,19 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    category:{
+        type: String,
+        required: true
+    },
+    budget:{
+        type: String,
+        required: false
+    },
     location: {
         type: String,
         required: true
     },
-    note: {
+    notes: {
         type: String,
         required: false
     },

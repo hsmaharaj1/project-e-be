@@ -13,18 +13,26 @@ module.exports.addEvent = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.TOKEN_KEY);
         const userId = decoded.id;
 
-        const { eventName, description, location, note, groupSize, eventDate } = req.body;
+        const { eventName, description, location, notes, groupSize, eventDate, category, budget } = req.body;
         const event = await Events.create({
             madeby: userId,
             eventName,
             description,
             location,
-            note,
+            notes,
             groupSize,
-            eventDate
+            eventDate,
+            category,
+            budget
         });
-        await UserEvent.create({ userId, eventId: event._id, role: 'creator' });
-        res.status(201).json({ success: true, event });
+        
+        if(event){
+            await UserEvent.create({ userId, eventId: event._id, role: 'creator' });
+            res.status(201).json({ success: true, message:"Created successfully" });
+        }else{
+            res.status(500).json({success: false, message: "Couldn't add"})
+        }
+        
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Server error" });
@@ -50,14 +58,16 @@ module.exports.updateEvent = async (req, res, next) => {
             return res.status(401).json({ message: 'User not authorized' })
         }
 
-        const { eventName, description, location, note, groupSize, eventDate } = req.body
+        const { eventName, description, location, notes, groupSize, eventDate, category, budget } = req.body
         
         if(eventName) event.eventName = eventName
         if(description) event.description = description
         if(location) event.location = location
-        if(note) event.note = note
+        if(notes) event.notes = notes
         if(groupSize) event.groupSize = groupSize
         if(eventDate) event.eventDate = eventDate
+        if(category) event.category = category
+        if(budget) event.budget = budget
 
         await event.save()
         res.json({ success: true, event })

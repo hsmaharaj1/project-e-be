@@ -21,7 +21,7 @@ module.exports.isUpdated = async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ status: false, messgae: "Server error" })
+        res.status(500).json({ status: false, message: "Server error" })
     }
 }
 
